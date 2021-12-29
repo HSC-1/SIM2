@@ -1,0 +1,15 @@
+토지_피복지도_항공위성_이미지_강원_및_충청/
+image/
+bbox/
+Preprocessing-main/
+json2png_sample/
+airsim_env/
+PyQt5_for_Beginner/
+Sim2Data/
+PyQt, Qt-Designer, PyCharm 등 개발 환경,도구 설명/
+MAP/
+__pycache__/
+/TEST*
+!/TEST_Simulation_03
+.vs/
+파이참-가상환경 설정/
