@@ -15,7 +15,7 @@ import subprocess
 
 import threading 
 import time
-
+import asyncio
 global flag_autosave
 
 
@@ -168,7 +168,7 @@ class WindowClass(QMainWindow, form_class) :
         self.btn5_manualsave.clicked.connect(self.manualSaveDet)
         self.btn5_pause.clicked.connect(self.pauseDet)
         #self.label5_01
-    
+        self.pause_ = True
 
     def connectDet(self):
         state  = api.confirmConnection()
@@ -182,14 +182,17 @@ class WindowClass(QMainWindow, form_class) :
             
     def manualSaveDet(self):
         api.exeDetection()
+        # asyncio.run(api.test_detection())
     
 
     def autoSaveDet(self):
-        work01.start() # 쓰레드 사용
+        self.pause_ = True
+        while self.pause_:
+            # api.exeDetection()
+            asyncio.run(api.test_detection())
 
     def pauseDet(self):
-        work02.start()
-        work02.join()
+        self.pause_ = False
 
 
         
