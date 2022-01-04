@@ -83,7 +83,7 @@ class Api:
         #21.11.18변경/ 경로 C:\Users\sim\Documents\Sim2data\datasets #1118변경후
         filepath =os.path.expanduser('~')+'\Documents\\Sim2data\\datasets\\'
         st=''
-        dict_ = {'person':'0','PAD':'1'}
+        dict_ = {'person':'0','PAD':'1','mark':'2'}
         for cordinate in list_cordinate:
             
             yolo_coord = Api.polygon2yolo(cordinate[1],cordinate[2],cordinate[3],cordinate[4]) #욜로 변환
@@ -118,6 +118,7 @@ class Api:
         self.image_type = airsim.ImageType.Scene
         self.object_0 = "Person*"
         self.object_1 = "PAD*"
+        self.object_2 = "mark*"
         #self.setting()
         pass
 
@@ -131,6 +132,7 @@ class Api:
         self.client.simSetDetectionFilterRadius(self.camera_name, self.image_type, 800 * 100) 
         self.client.simAddDetectionFilterMeshName(self.camera_name, self.image_type, self.object_0)
         self.client.simAddDetectionFilterMeshName(self.camera_name, self.image_type, self.object_1) 
+        self.client.simAddDetectionFilterMeshName(self.camera_name, self.image_type, self.object_2) 
        
 
 
@@ -224,7 +226,7 @@ class Api:
                 png = cv2.resize(png, dsize=(550, 420))
                 png2 = cv2.resize(png2, dsize=(550, 420))
                 png3 = [cv2.resize(i, dsize=(550, 420)) for i in test_png]
-                png = cv2.vconcat(png3)
+                # png = cv2.vconcat(png3)
                 Api.save_scenery_bbox(png, filenames) #Box 표시된 이미지 저장
                 cv2.imshow("Sim2Real", png)
                 cv2.waitKey(1)
